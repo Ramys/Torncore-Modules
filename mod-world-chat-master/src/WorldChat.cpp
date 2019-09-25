@@ -17,7 +17,7 @@
 #include <unordered_map>
 
 /* VERSION */
-float ver = 1.0f;
+float ver = 1.1f;
 
 /* Colors */
 std::string WORLD_CHAT_ALLIANCE_BLUE = "|cff3399FF";
@@ -101,6 +101,7 @@ public:
     {
 
         if (!sConfigMgr->GetBoolDefault("World_Chat.Enable", true)) {
+            Player* player = pChat->GetSession()->GetPlayer();
             ChatHandler(pChat->GetSession()).PSendSysMessage("[WC] %sWorld Chat System is disabled.|r", WORLD_CHAT_RED.c_str());
             return true;
         }
@@ -110,6 +111,11 @@ public:
 
         Player* player = pChat->GetSession()->GetPlayer();
         uint32 guid = player->GetGUID();
+
+		if (!player->CanSpeak()){
+			ChatHandler(pChat->GetSession()).PSendSysMessage("[WC] %sYou can't use World Chat while muted!|r", WORLD_CHAT_RED.c_str());
+			return true;
+		}
 
         if (!WorldChat[guid].chat) {
             ChatHandler(player->GetSession()).PSendSysMessage("[WC] %sWorld Chat is disabled. (.chat)|r", WORLD_CHAT_RED.c_str());

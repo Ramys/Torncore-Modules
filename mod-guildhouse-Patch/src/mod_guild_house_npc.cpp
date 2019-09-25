@@ -158,7 +158,7 @@ public:
         case 26331: // Warlock
         case 26332: // Warrior
         case 33251: // Death Knight
-		case 90001: // Master Trainer
+        case 90001: // Master Trainer
             cost = GuildHouseTrainer;
             SpawnNPC(action, player);
             break;
@@ -173,7 +173,7 @@ public:
         case 33608: // Alchemy
         case 33616: // Herbalism
       
-            case 33613: // Tailoring
+        case 33613: // Tailoring
         case 33619: // Cooking
         case 33623: // Fishing 
         case 33621: // First Aid
