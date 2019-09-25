@@ -67,6 +67,7 @@ public:
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TRAINER, "Shaman", GOSSIP_SENDER_MAIN, 26330, "Spawn Shaman Trainer?", GuildHouseTrainer, false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TRAINER, "Warlock", GOSSIP_SENDER_MAIN, 26331, "Spawn Warlock Trainer?", GuildHouseTrainer, false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TRAINER, "Warrior", GOSSIP_SENDER_MAIN, 26332, "Spawn Warrior Trainer?", GuildHouseTrainer, false);
+			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TRAINER, "Master", GOSSIP_SENDER_MAIN, 90001, "Spawn Master Trainer?", GuildHouseTrainer, false);
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Go Back!", GOSSIP_SENDER_MAIN, 9);
             player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, m_creature->GetGUID());
             break;
@@ -151,12 +152,13 @@ public:
         case 26324: // Druid
         case 26325: // Hunter
         case 26326: // Mage 
-        case 26328: // Priest.
+        case 26328: // Priest
         case 26329: // Rogue
         case 26330: // Shaman
         case 26331: // Warlock
         case 26332: // Warrior
         case 33251: // Death Knight
+		case 90001: // Master Trainer
             cost = GuildHouseTrainer;
             SpawnNPC(action, player);
             break;

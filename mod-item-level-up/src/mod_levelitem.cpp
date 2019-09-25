@@ -1,50 +1,4 @@
-/*
 
-# LevelItem #
-
-### Description ###
-------------------------------------------------------------------------------------------------------------------
-This module creates an item called 'Level-Up Token' that allows the player to instantly advance to the next level.
-The icon will only show in the player's backpack if their client has the Patch-Z.mpq in their client's data folder.
-
-## Data ###
-------------------------------------------------------------------------------------------------------------------
-- Type: Item
-- Script: LevelItem
-- Config: Yes
-- SQL: Yes
-  - Item ID: 701001
-
-
-### Version ###
-------------------------------------------------------------------------------------------------------------------
-- v2018.12.12 - Release - Update module for StygianCore
-
-
-### Credits ###
-------------------------------------------------------------------------------------------------------------------
-#### A module for AzerothCore by StygianTheBest ([stygianthebest.github.io](http://stygianthebest.github.io)) ####
-
-###### Additional Credits include:
-- [Blizzard Entertainment](http://blizzard.com)
-- [TrinityCore](https://github.com/TrinityCore/TrinityCore/blob/3.3.5/THANKS)
-- [SunwellCore](http://www.azerothcore.org/pages/sunwell.pl/)
-- [AzerothCore](https://github.com/AzerothCore/azerothcore-wotlk/graphs/contributors)
-- [AzerothCore Discord](https://discord.gg/gkt4y2x)
-- [EMUDevs](https://youtube.com/user/EmuDevs)
-- [AC-Web](http://ac-web.org/)
-- [ModCraft.io](http://modcraft.io/)
-- [OwnedCore](http://ownedcore.com/)
-- [OregonCore](https://wiki.oregon-core.net/)
-- [Wowhead.com](http://wowhead.com)
-- [AoWoW](https://wotlk.evowow.com/)
-
-
-### License ###
-------------------------------------------------------------------------------------------------------------------
-- This code and content is released under the [GNU AGPL v3](https://github.com/azerothcore/azerothcore-wotlk/blob/master/LICENSE-AGPL3).
-
-*/
 
 #include "Configuration/Config.h"
 #include "Player.h"
@@ -55,7 +9,7 @@ The icon will only show in the player's backpack if their client has the Patch-Z
 #include "GossipDef.h"
 
 uint32 Increase_Level;
-uint32 MaxItemLevel = 60;
+uint32 MaxItemLevel = 70;
 bool LevelItemEnable = true;
 bool LevelItemAnnounce = true;
 
@@ -82,7 +36,7 @@ public:
     {
         LevelItemEnable = sConfigMgr->GetBoolDefault("LevelItem.Enable", true);
         LevelItemAnnounce = sConfigMgr->GetBoolDefault("LevelItem.Announce", true);
-        MaxItemLevel = sConfigMgr->GetIntDefault("LevelItem.MaxItemLevel", 60);
+        MaxItemLevel = sConfigMgr->GetIntDefault("LevelItem.MaxItemLevel", 70);
     }
 };
 
@@ -120,7 +74,7 @@ public:
 
         if (p->getLevel() >= MaxItemLevel)
         {
-            ChatHandler(p->GetSession()).PSendSysMessage("You're already at level 60!");
+            ChatHandler(p->GetSession()).PSendSysMessage("You're already at level 70!");
             return false;
         }
 
