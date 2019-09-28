@@ -71,7 +71,7 @@ class solocraft_player_instance_handler : public PlayerScript {
 public:
 
     solocraft_player_instance_handler() : PlayerScript("solocraft_player_instance_handler") {
-        sLog->outString("scripts.solocraft.player.instance", "[Solocraft] solocraft_player_instance_handler Loaded");
+     //   sLog->outString("scripts.solocraft.player.instance", "[Solocraft] solocraft_player_instance_handler Loaded");
     }
 
     void OnMapChanged(Player *player) override {

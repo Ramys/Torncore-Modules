@@ -224,14 +224,14 @@ public:
         {
             std::ostringstream messageTaunt;
             messageTaunt << "Whadda we have here? A high-roller eh? Step right up " << player->GetName() << "!";
-            player->GetSession()->SendNotification(messageTaunt.str().c_str());
+            player->GetSession()->SendNotification( "%s",messageTaunt.str().c_str());
         }
 
         // Reset # of bets placed
         Bets = 0;
 
         // Clean up the display if using Copper or Silver
-        if (Pocket >= 100000 && MoneyType == 1 || Pocket >= 100000 && MoneyType == 2)
+        if ((Pocket >= 100000 && MoneyType == 1 )|| (Pocket >= 100000 && MoneyType == 2))
         {
             messagePocket << "Hi " << player->GetName() << ". I see you have PLENTY of " << MoneyTypeText << " to gamble.";
         }
@@ -447,7 +447,7 @@ public:
             messageAction << "The bones come to rest with a total roll of " << Roll << ".";
             messageNotice << "WOWZERS " << player->GetName() << "!! You hit the jackpot! Here's your purse of " << Jackpot << " " << MoneyTypeText << "!";
             creature->MonsterWhisper(messageAction.str().c_str(), player);
-            player->GetSession()->SendAreaTriggerMessage(messageNotice.str().c_str());
+            player->GetSession()->SendAreaTriggerMessage( "%s",messageNotice.str().c_str());
             player->CLOSE_GOSSIP_MENU();
             creature->HandleEmoteCommand(EMOTE_ONESHOT_APPLAUD);
             return true;
