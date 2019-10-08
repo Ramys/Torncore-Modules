@@ -14,7 +14,7 @@ SET
 @COOLDOWN			:= 30000,
 @TEXT_ID        	:= 300000,
 @GOSSIP_MENU    	:= 50000,
-@SCRIPTNAME			:= ""; -- internalitemhanler
+@SCRIPTNAME			:= "pocket_portal"; -- internalitemhanler
 -- --------------------------------------------------------------------------------------
 -- Teleporter Item
 -- --------------------------------------------------------------------------------------
