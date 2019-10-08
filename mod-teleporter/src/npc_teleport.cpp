@@ -181,7 +181,7 @@ class npc_teleport_gossip : public CreatureScript
             {
                 PageC(player) = PageD(player) = Cat(player) = 0;
 
-                if (player->IsInCombat())
+                if (player->duel || player->GetMap()->IsBattleArena() || player->InBattleground() || player->HasFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_FEIGN_DEATH) || player->isDead()|| player->IsInCombat() || player->IsInFlight() || player->HasStealthAura() || player->HasInvisibilityAura())
                 {
                     CloseGossipMenuFor(player);
 
