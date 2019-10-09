@@ -96,7 +96,6 @@ public:
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Ironforge", GOSSIP_SENDER_MAIN, 183322, "Spawn Ironforge Portal?", GuildHousePortal, false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Darnassus", GOSSIP_SENDER_MAIN, 183317, "Spawn Darnassus Portal?", GuildHousePortal, false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Exodar", GOSSIP_SENDER_MAIN, 183321, "Spawn Exodar Portal?", GuildHousePortal, false);
-				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191013, "Add Shattrath Portal?", GuildHousePortal, false);
             }
             else
             {
@@ -105,6 +104,7 @@ public:
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Thunderbluff", GOSSIP_SENDER_MAIN, 183326, "Add Thunderbuff Portal?", GuildHousePortal,  false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Silvermoon", GOSSIP_SENDER_MAIN, 183324, "Add Silvermoon Portal?", GuildHousePortal,  false);
             }
+			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191013, "Add Shattrath Portal?", GuildHousePortal, false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Dalaran", GOSSIP_SENDER_MAIN, 191164, "Add Dalaran Portal?", GuildHousePortal,  false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_MONEY_BAG, "Guild Vault", GOSSIP_SENDER_MAIN, 187293, "Add Guild Vault?", GuildHouseObject,  false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_INTERACT_1, "Barber Chair", GOSSIP_SENDER_MAIN, 191028, "Add a Barber Chair?", GuildHouseObject,  false);
