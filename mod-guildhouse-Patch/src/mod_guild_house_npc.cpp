@@ -9,8 +9,12 @@
 #include "DataMap.h"
 #include "GameObject.h"
 #include "Transport.h"
+#include "Chat.h"
+#include "ScriptedGossip.h"
+#include "SpellAuraEffects.h"
+#include "CreatureAI.h"
 
-int cost, GuildHouseInnKeeper, GuildHouseZomble, GuildHouseBank, GuildHouseMailBox, GuildHouseAuctioneer, GuildHouseTrainer, GuildHouseVendor, GuildHouseObject, GuildHousePortal, GuildHouseSpirit, GuildHouseProff;
+int cost, GuildHouseInnKeeper, GuildHouseZomble, GuildHouseBank, GuildHouseMailBox, GuildHouseAuctioneer, GuildHouseTrainer, GuildHouseVendor, GuildHouseObject, GuildHousePortal, GuildHouseSpirit, GuildHouseProff, GuildHouseBuyRank;
 
 class GuildHouseSpawner : public CreatureScript {
 
@@ -22,9 +26,11 @@ public:
 
         if (player->GetGuild())
         {
-            if (player->GetGuild()->GetLeaderGUID() != player->GetGUID())
+            Guild* guild = sGuildMgr->GetGuildById(player->GetGuildId());
+            Guild::Member const* memberMe = guild->GetMember(player->GetGUID());
+            if ((int)memberMe->GetRankId() > GuildHouseBuyRank)
             {
-                ChatHandler(player->GetSession()).PSendSysMessage("You are not the guild leader, sorry i cant do business with you");
+                ChatHandler(player->GetSession()).PSendSysMessage("You are not authorized to make guild house purchases.");
                 return false;
             }
         }
@@ -35,8 +41,8 @@ public:
         }
 
         player->PlayerTalkClass->ClearMenus();
-        player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Innkeeper", GOSSIP_SENDER_MAIN, 18649, "Add a Innkeeper?", GuildHouseInnKeeper, false);
-        player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Mailbox", GOSSIP_SENDER_MAIN, 184137, "Spawn a mailbox?", GuildHouseMailBox, false);
+        player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Innkeeper", GOSSIP_SENDER_MAIN, 18649, "Spawn Innkeeper?", GuildHouseInnKeeper, false);
+        player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Mailbox", GOSSIP_SENDER_MAIN, 184137, "Spawn mailbox?", GuildHouseMailBox, false);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn Class Trainer", GOSSIP_SENDER_MAIN, 2);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn Vendor", GOSSIP_SENDER_MAIN, 3);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn City Portals / Objects", GOSSIP_SENDER_MAIN, 4);
@@ -76,19 +82,21 @@ public:
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Trade Supplies", GOSSIP_SENDER_MAIN, 28692, "Spawn Trade Supplies?", GuildHouseVendor, false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Tabard Vendor", GOSSIP_SENDER_MAIN, 28776, "Spawn Tabard Vendor?", GuildHouseVendor, false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Food & Drink", GOSSIP_SENDER_MAIN, 29715, "Spawn Food & Drink?", GuildHouseVendor, false);
+			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Reagent Vendor", GOSSIP_SENDER_MAIN, 29636, "Spawn Reagent Vendor?", GuildHouseVendor, false);
             player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, "Go Back!", GOSSIP_SENDER_MAIN, 9);
             player->SEND_GOSSIP_MENU(DEFAULT_GOSSIP_MESSAGE, m_creature->GetGUID());
             break;
         case 4: //objects / portals
             player->PlayerTalkClass->ClearMenus();
-            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Forge", GOSSIP_SENDER_MAIN, 1685, "Add a forge?", GuildHouseObject, false);
-            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Anvil", GOSSIP_SENDER_MAIN, 4087, "Add a Anvil?", GuildHouseObject, false);
+            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Forge", GOSSIP_SENDER_MAIN, 1685, "Spawn Forge?", GuildHouseObject, false);
+            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Anvil", GOSSIP_SENDER_MAIN, 4087, "Spawn Anvil?", GuildHouseObject, false);
             if (player->GetTeamId() == TEAM_ALLIANCE)
             {
-                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Stormwind", GOSSIP_SENDER_MAIN, 183325, "Add Stormwind Portal?", GuildHousePortal, false);
-                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Ironforge", GOSSIP_SENDER_MAIN, 183322, "Add Ironforge Portal?", GuildHousePortal, false);
-                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Darnassus", GOSSIP_SENDER_MAIN, 183317, "Add Darnassus Portal?", GuildHousePortal, false);
-                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Exodar", GOSSIP_SENDER_MAIN, 183321, "Add Exodar Portal?", GuildHousePortal, false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Stormwind", GOSSIP_SENDER_MAIN, 183325, "Spawn Stormwind Portal?", GuildHousePortal, false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Ironforge", GOSSIP_SENDER_MAIN, 183322, "Spawn Ironforge Portal?", GuildHousePortal, false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Darnassus", GOSSIP_SENDER_MAIN, 183317, "Spawn Darnassus Portal?", GuildHousePortal, false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Exodar", GOSSIP_SENDER_MAIN, 183321, "Spawn Exodar Portal?", GuildHousePortal, false);
+				player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191013, "Add Shattrath Portal?", GuildHousePortal, false);
             }
             else
             {
@@ -183,6 +191,7 @@ public:
         case 28692: // Trade supplies
         case 28776: // Tabard Vendor
         case 29715: // Food & Drink
+		case 29636: // Reagent Vendor
             cost = GuildHouseProff;
             SpawnNPC(action, player);
             break;
@@ -221,6 +230,7 @@ public:
         case 183324: // Silvermoon Portal
         case 183321: // Exodar Portal
         case 191164: // Dalaran Portal
+		case 191013: // Shattrath Portal
             cost = GuildHousePortal;
             SpawnObject(action, player);
             break;
@@ -369,7 +379,8 @@ public:
         GuildHousePortal = sConfigMgr->GetIntDefault("GuildHousePortal", 500000);
         GuildHouseProff = sConfigMgr->GetIntDefault("GuildHouseProff", 500000);
         GuildHouseSpirit = sConfigMgr->GetIntDefault("GuildHouseSpirit", 100000);
-        GuildHouseZomble = sConfigMgr->GetIntDefault("GuildHouseZomble", 1000000);       
+        GuildHouseZomble = sConfigMgr->GetIntDefault("GuildHouseZomble", 1000000);    
+        GuildHouseBuyRank = sConfigMgr->GetIntDefault("GuildHouseBuyRank", 0);		
     }
 };
 
