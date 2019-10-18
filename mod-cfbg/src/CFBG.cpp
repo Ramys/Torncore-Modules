@@ -23,7 +23,7 @@ void CFBG::LoadConfig()
 {
     _IsEnableSystem = sConfigMgr->GetBoolDefault("CFBG.Enable", true);
     _IsEnableAvgIlvl = sConfigMgr->GetBoolDefault("CFBG.Include.Avg.Ilvl.Enable", false);
-    _MaxPlayersCountInGroup = sConfigMgr->GetIntDefault("CFBG.Players.Count.In.Group", 10);
+    _MaxPlayersCountInGroup = sConfigMgr->GetIntDefault("CFBG.Players.Count.In.Group", 3);
 }
 
 bool CFBG::IsEnableSystem()
