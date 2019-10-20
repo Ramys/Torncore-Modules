@@ -27,28 +27,28 @@ class spp_dynamic_xp_rate : public PlayerScript
         if (sConfigMgr->GetBoolDefault("Dynamic.XP.Rate", true))
         
 	   {
-           if (player->getLevel() >= 1)
+           if (player->getLevel() <= 1)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.1-9", 10);
 
-           else if (player->getLevel() >= 10)
+           else if (player->getLevel() <= 10)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.10-19", 9);
 
-           else if (player->getLevel() >= 20)
+           else if (player->getLevel() <= 20)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.20-29", 8);
 
-           else if (player->getLevel() >= 30)
+           else if (player->getLevel() <= 30)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.30-39", 7);
 
-           else if (player->getLevel() >= 40)
+           else if (player->getLevel() <= 40)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.40-49", 6);
 
-           else if (player->getLevel() >= 50)
+           else if (player->getLevel() <= 50)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.50-59", 5);
 
-           else if (player->getLevel() >= 60)
+           else if (player->getLevel() <= 60)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.60-69", 4);
 
-           else if (player->getLevel() >= 70)
+           else if (player->getLevel() <= 70)
             amount *= sConfigMgr->GetIntDefault("Dynamic.XP.Rate.70-79", 3);
 
         }
