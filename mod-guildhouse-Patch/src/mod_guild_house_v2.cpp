@@ -387,4 +387,3 @@ void AddGuildHouseV2Scripts() {
     new GuildHouseV2PlayerScript();
     new GuildHouseCommand();
 }
-

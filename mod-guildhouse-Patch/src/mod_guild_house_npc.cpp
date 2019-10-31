@@ -43,6 +43,7 @@ public:
         player->PlayerTalkClass->ClearMenus();
         player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Innkeeper", GOSSIP_SENDER_MAIN, 18649, "Spawn Innkeeper?", GuildHouseInnKeeper, false);
         player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Mailbox", GOSSIP_SENDER_MAIN, 184137, "Spawn mailbox?", GuildHouseMailBox, false);
+        player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TALK, "Spawn Stable Master", GOSSIP_SENDER_MAIN, 601026, "Spawn a Stable Master?", GuildHouseVendor, false);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn Class Trainer", GOSSIP_SENDER_MAIN, 2);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn Vendor", GOSSIP_SENDER_MAIN, 3);
         player->ADD_GOSSIP_ITEM(GOSSIP_ICON_TALK, "Spawn City Portals / Objects", GOSSIP_SENDER_MAIN, 4);
@@ -96,6 +97,7 @@ public:
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Ironforge", GOSSIP_SENDER_MAIN, 183322, "Spawn Ironforge Portal?", GuildHousePortal, false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Darnassus", GOSSIP_SENDER_MAIN, 183317, "Spawn Darnassus Portal?", GuildHousePortal, false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Exodar", GOSSIP_SENDER_MAIN, 183321, "Spawn Exodar Portal?", GuildHousePortal, false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191013, "Add Shattrath Portal?", GuildHousePortal, false);
             }
             else
             {
@@ -103,9 +105,10 @@ public:
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Undercity", GOSSIP_SENDER_MAIN, 183327, "Add Undercity Portal?", GuildHousePortal,  false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Thunderbluff", GOSSIP_SENDER_MAIN, 183326, "Add Thunderbuff Portal?", GuildHousePortal,  false);
                 player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Silvermoon", GOSSIP_SENDER_MAIN, 183324, "Add Silvermoon Portal?", GuildHousePortal,  false);
+                player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191014, "Add Shattrath Portal?", GuildHousePortal, false);
             }
-			player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Shattrath", GOSSIP_SENDER_MAIN, 191013, "Add Shattrath Portal?", GuildHousePortal, false);
-            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Dalaran", GOSSIP_SENDER_MAIN, 191164, "Add Dalaran Portal?", GuildHousePortal,  false);
+            
+            player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_TAXI, "Portal: Dalaran", GOSSIP_SENDER_MAIN, 195682, "Add Dalaran Portal?", GuildHousePortal,  false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_MONEY_BAG, "Guild Vault", GOSSIP_SENDER_MAIN, 187293, "Add Guild Vault?", GuildHouseObject,  false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_INTERACT_1, "Barber Chair", GOSSIP_SENDER_MAIN, 191028, "Add a Barber Chair?", GuildHouseObject,  false);
             player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_INTERACT_1, "Cooking Fire", GOSSIP_SENDER_MAIN, 190556, "Add a Cooking Fire?", GuildHouseObject,  false);
@@ -191,7 +194,8 @@ public:
         case 28692: // Trade supplies
         case 28776: // Tabard Vendor
         case 29715: // Food & Drink
-		case 29636: // Reagent Vendor
+	case 29636: // Reagent Vendor
+        case 601026: // Stable Master
             cost = GuildHouseProff;
             SpawnNPC(action, player);
             break;
@@ -229,8 +233,9 @@ public:
         case 183326: // Thunder bluff portal
         case 183324: // Silvermoon Portal
         case 183321: // Exodar Portal
-        case 191164: // Dalaran Portal
-		case 191013: // Shattrath Portal
+        case 195682: // Dalaran Portal
+	case 191013: // Shattrath Portal alliance
+        case 191014: // Shattrath Portal horde
             cost = GuildHousePortal;
             SpawnObject(action, player);
             break;

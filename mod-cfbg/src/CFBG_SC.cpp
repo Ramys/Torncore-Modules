@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright (С) since 2019 Andrei Guluaev (Winfidonarleyan/Kargatum) https://github.com/Winfidonarleyan 
 */
 
@@ -205,11 +205,10 @@ class CFBG_World : public WorldScript
 public:
     CFBG_World() : WorldScript("CFBG_World") { }
 
-    void OnBeforeConfigLoad(bool Reload) override
-       {
-            sCFBG->LoadConfig();
-    
-        }
+    void OnAfterConfigLoad(bool /*Reload*/) override
+    {
+        sCFBG->LoadConfig();
+    }
 };
 
 void AddSC_CFBG()
