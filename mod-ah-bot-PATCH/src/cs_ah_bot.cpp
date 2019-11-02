@@ -134,7 +134,7 @@ public:
                 return false;
             }
 
-            auctionbot.Commands(3, ahMapID, NULL, param1);
+            auctionbot.Commands(3, ahMapID, 0, param1);
             */
         }
         else if (strncmp(opt, "maxtime", l) == 0)
@@ -149,7 +149,7 @@ public:
                 return false;
             }
 
-            auctionbot.Commands(4, ahMapID, NULL, param1);
+            auctionbot.Commands(4, ahMapID, 0, param1);
             */
         }
         else if (strncmp(opt, "percentages", l) == 0)
