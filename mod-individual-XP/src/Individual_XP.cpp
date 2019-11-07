@@ -90,7 +90,7 @@ public:
         }
     }
 
-    void OnGiveXP(Player* p, uint32& amount, Unit* victim) override
+    void OnGiveXP(Player* p, uint32& amount, Unit* /*victim*/) override
     {
         if (IndividualXpEnabled) {
             if (PlayerXpRate* data = p->CustomData.Get<PlayerXpRate>("Individual_XP"))
@@ -106,7 +106,7 @@ public:
     Individual_XP_command() : CommandScript("Individual_XP_command") { }
     std::vector<ChatCommand> GetCommands() const override
     {
-        if (IndividualXpEnabled) {
+
             static std::vector<ChatCommand> IndividualXPCommandTable =
             {
                 // View Command
@@ -128,7 +128,7 @@ public:
 
             return IndividualXPBaseTable;
         }
-	}
+	
     // View Command
     static bool HandleViewCommand(ChatHandler* handler, char const* args)
     {
