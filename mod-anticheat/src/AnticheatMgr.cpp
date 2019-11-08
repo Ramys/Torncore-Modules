@@ -39,7 +39,7 @@ void AnticheatMgr::JumpHackDetection(Player* player, MovementInfo /* movementInf
 	{
 		BuildReport(player, JUMP_HACK_REPORT);
 		sLog->outString("AnticheatMgr:: Jump-Hack detected player %s (%u)", player->GetName().c_str(), player->GetGUIDLow());
-		player->GetSession()->KickPlayer(true);
+		
 	}
 }
 
@@ -245,7 +245,7 @@ void AnticheatMgr::SpeedHackDetection(Player* player, MovementInfo movementInfo)
 	{
 		if (sConfigMgr->GetBoolDefault("Anticheat.WriteLog", false))
 			sLog->outString("AnticheatMgr:: Speed-Hack detected player %s (%u)", player->GetName().c_str(), player->GetGUIDLow());
-                      player->GetSession()->KickPlayer(true);
+            
 		BuildReport(player, SPEED_HACK_REPORT);
 	}
 }
