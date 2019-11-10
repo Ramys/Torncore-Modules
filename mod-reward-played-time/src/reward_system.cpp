@@ -6,6 +6,7 @@
 #include "ScriptMgr.h"
 #include "Define.h"
 #include "GossipDef.h"
+#include "Chat.h"
 
 bool RewardSystem_Enable;
 uint32 Max_roll;
@@ -18,18 +19,16 @@ public:
     uint32 RewardTimer;
     int32 roll;
 
-    void OnLogin(Player* p)
-    {
-        if (RewardSystem_Enable)
-        {
-            
-            RewardTimer = (sConfigMgr->GetIntDefault("RewardTime", 1)*HOUR*IN_MILLISECONDS);
-        }
-    }
+    void OnLogin(Player* player)  override
+	{
+		if (sConfigMgr->GetBoolDefault("RewardSystem.Announce", true)) {
+			ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00Reward Time Played |rmodule.");
+		}
+	}
 
-    void OnBeforeUpdate(Player* player, uint32 p_time)
+    void OnBeforeUpdate(Player* player, uint32 p_time) override
     {
-        if (RewardSystem_Enable)
+        if (sConfigMgr->GetBoolDefault("RewardSystemEnable", true))
         {
             if (RewardTimer > 0)
             {
@@ -88,7 +87,6 @@ public:
             std::string cfg_def_file = cfg_file + ".dist";
             sConfigMgr->LoadMore(cfg_def_file.c_str());
             sConfigMgr->LoadMore(cfg_file.c_str());
-            RewardSystem_Enable = sConfigMgr->GetBoolDefault("RewardSystemEnable", true);
             Max_roll = sConfigMgr->GetIntDefault("MaxRoll", 1000);
         }
     }
