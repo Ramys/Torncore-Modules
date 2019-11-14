@@ -1,10 +1,6 @@
-# Premium Account
+# Mod-Premium 
 
-- Latest Premium Account build status with azerothcore: [![Build Status](https://travis-ci.org/azerothcore/mod-duelreset.svg?branch=master)](https://travis-ci.org/azerothcore/mod-duelreset)
-
-This is a module for [AzerothCore](http://www.azerothcore.org) that adds Premium account features to players.
-
-![script screenshot](/screenshots/script.png?raw=true "script screenshot")
+- Latest Mod-Premium build status with azerothcore: [![Build Status](https://travis-ci.org/milestorme/mod-premium.svg?branch=master)](https://travis-ci.org/milestorme/mod-premium)
 
 Current features:
 
@@ -16,12 +12,8 @@ This module allows players to:
 - Mount (60%) players will mount the correct mount for the race
 - Summon Vendor
 - Trainer players will now spawn their class trainer also depending on faction.
+- Poszer NPC Services
 - Added creature spawn check. 
-
-Upcoming features:
-- Teleport players to major citys
-- Talent Reset features
-- Not allow morph if player is in shapeshift form
 
 ## Requirements
 
@@ -54,13 +46,10 @@ If you need to change the module configuration, go to your server configuration 
 
 ## Test the module
 
-There is a SQL query so you can create an item and test it quickly.
+There is a SQL query so you can create an item and NPC, use db_assembler.sh or import manually.
 
 ![item screenshot](/screenshots/item.png?raw=true "item screenshot")
-
-# Show your appreciation
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SBJFTAJKUNEXC)
-
+![script screenshot](/screenshots/script.png?raw=true "script screenshot")
 
 
 
